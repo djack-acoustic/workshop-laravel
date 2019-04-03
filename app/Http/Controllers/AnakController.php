@@ -19,7 +19,7 @@ class AnakController extends Controller
     }
     
     public function create(){
-        $pegawai = Pegawai::findAll();
+        $pegawai = Anak::findAll();
         return view('anak.create',compact('pegawai'));
     }
 
