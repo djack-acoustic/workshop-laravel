@@ -45,6 +45,7 @@ class Pegawai extends Model
     public static function updateData2($id, $request){
         $data = self::find($id);
         $data->update($request);
+        
     }
 
     public static function deleteData($id){
