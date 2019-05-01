@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
 });
 
 Route::get('agung', function () {
@@ -26,20 +26,19 @@ Route::get('agung', function () {
 // Route::put('user/{id}', 'UserController@update');
 // Route::delete('user/{id}', 'UserController@update');
 
-// Route::get('foo', function () {
-//     $data['header'] = "HEADER";
-//     return view('template.header',$data);
-// });
-
+// PEGAWAI
 Route::resource('pegawai','PegawaiController')->except([
     'update', 'destroy'
 ]);
+
 Route::post('pegawai-update/{id}','PegawaiController@update');
 Route::get('pegawai-delete/{id}','PegawaiController@destroy');
+Route::get('pegawai-datatable','PegawaiController@datatable')->name('pegawai.data');
 
 // ANAK
 Route::resource('anak','AnakController')->except([
     'update', 'destroy'
 ]);
+
 Route::post('anak-update/{id}','AnakController@update');
 Route::get('anak-delete/{id}','AnakController@destroy');

@@ -6,36 +6,14 @@
     @endif
     <br>
     <a href="{{url('pegawai/create')}}">Tambah</a>
-    <table>
+    <table id="datatable">
         <tr>
-            <th>No</th>
             <th>Nama</th>
             <th>Alamat</th>
             <th>No Hp</th>
             <th>Anak</th>
             <th>Action</th>
         </tr>
-        @php
-            $no=1;
-        @endphp
-        @foreach ($pegawai as $row)
-            <tr>
-                <td>{{$no++}}</td>
-                <td>{{$row->nama_pegawai}}</td>
-                <td>{{$row->alamat}}</td>
-                <td>{{$row->no_hp}}</td>
-                <td>
-                    @foreach($row->anak as $ank)
-                        {{$ank->nama}}<br>
-                    @endforeach
-                </td>
-                <td>
-                    <a href="{{url('pegawai/'.$row->id.'/edit')}}">Edit</a>
-                    <a href="{{url('pegawai-delete/'.$row->id)}}">Delete</a>
-                    <a href="{{url('anak-pagawai/'.$row->id)}}">Lihat Anak</a>
-                </td>
-            </tr>
-        @endforeach
     </table>
 @endsection
 @push('style')
@@ -51,4 +29,22 @@
             border-collapse: collapse;
         }
     </style>
+@endpush
+@push('script')
+    <script>
+        $(function() {
+            $('#datatable').DataTable({
+                processing: true,
+                serverSide: true,
+                ajax: '{!! route('pegawai.data') !!}',
+                columns: [
+                    { data: 'nama_pegawai', name: 'nama_pegawai' },
+                    { data: 'alamat', name: 'alamat' },
+                    { data: 'no_hp', name: 'no_hp' },
+                    { data: 'anak', name: 'anak' },
+                    { data: 'action', name: 'action' },
+                ]
+            });
+        });
+    </script>
 @endpush

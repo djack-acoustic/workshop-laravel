@@ -8,8 +8,12 @@ use App\Pegawai;
 class PegawaiController extends Controller
 {
     public function index(){
-        $pegawai = Pegawai::findAll();
-        return view('pegawai.index',compact('pegawai'));
+        return view('pegawai.index');
+    }
+
+    public function datatable(Request $request)
+    {
+        return Pegawai::datatable($request);
     }
     
     public function create(){
@@ -22,7 +26,7 @@ class PegawaiController extends Controller
     }
 
     public function show($id){
-        return view('template.detail');
+        return view('detail');
     }
     
     public function store(Request $request){
